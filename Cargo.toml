@@ -1,0 +1,56 @@
+[package]
+name = "routeweaver"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+snow = "0.9"
+blake2 = "0.10"
+serde_with = "3.7"
+log = "0.4"
+once_cell = "1.19"
+zeroize = { version = "1.7", features = ["derive"] }
+tokio = { version = "1.37", features = [
+    "sync",
+    "macros",
+    "io-util",
+    "rt",
+    "rt-multi-thread",
+    "time",
+    "net",
+] }
+tokio-util = { version = "0.7", features = ["codec", "io-util"] }
+futures-util = { version = "0.3", features = ["sink"] }
+toml = "0.8"
+lz4_flex = "0.11"
+miniz_oxide = "0.7"
+dashmap = "5.5"
+itertools = "0.12"
+flexi_logger = { version = "0.28", default-features = false, features = [
+    "colors",
+    "async",
+] }
+serde = { version = "1.0", features = ["derive"] }
+data-encoding = "2.5"
+thiserror = "1.0"
+arrayvec = { version = "0.7", features = ["serde", "zeroize"] }
+scc = "2.1"
+deadqueue = "0.2"
+either = "1.11"
+byte-unit = { version = "5.1", features = ["u128"] }
+indexmap = "2.2"
+bincode = { version = "2.0.0-rc.3", features = ["serde"] }
+bytes = "1.6"
+clap = { version = "4.5", features = ["derive"] }
+entropy = "0.4"
+
+[target.'cfg(any(target_os = "linux", target_os = "macos", target_os = "freebsd", target_os = "windows"))'.dependencies]
+socket2 = "0.5"
+
+[build-dependencies]
+cfg_aliases = "0.2"
+
+[profile.release]
+lto = true
+strip = false
